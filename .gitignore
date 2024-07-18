@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# SFML
+lib/
+include/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -303,7 +307,7 @@ node_modules/
 _Pvt_Extensions
 
 # Paket dependency manager
-.paket/paket.exe
+.paket/paket.exebin
 paket-files/
 
 # FAKE - F# Make
