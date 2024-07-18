@@ -1,18 +1,7 @@
+#include <utils.h>
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <vector>
-
-/**
- * @brief Gets the FPS of the window.
- * @param clock an SFML clock.
- * @return The FPS of the window as a float.
- */
-float getFps(sf::Clock& clock)
-{
-    float currentTime = clock.restart().asSeconds();
-    float fps = 1.0f / currentTime;
-    return fps;
-}
 
 // The different types of tetrominoes
 enum Block
@@ -43,6 +32,7 @@ const sf::Color bgColor(40, 40, 43);
 const sf::Color primaryColor(61, 61, 64);
 
 // 2D Vector containing the state of all tiles on the Tetris grid
+// Initially fills it with Empty
 std::vector<std::vector<Block>> grid(rows, std::vector<Block>(cols, Block::Empty));
 
 int main()
