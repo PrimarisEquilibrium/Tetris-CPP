@@ -19,4 +19,4 @@ const int height = rows * tileSize;
 const sf::Color bgColor(40, 40, 43);
 const sf::Color primaryColor(61, 61, 64);
 
-#endif CONSTANTS_H
+#endif

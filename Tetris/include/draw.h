@@ -16,4 +16,4 @@ void drawGrid(sf::RenderWindow& window);
  */
 sf::RectangleShape makeRectOnGrid(float x, float y, sf::Color color);
 
-#endif DRAW_H
+#endif
