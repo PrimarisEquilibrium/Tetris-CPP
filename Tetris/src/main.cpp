@@ -1,4 +1,6 @@
-#include <utils.h>
+#include "utils.h"
+#include "constants.h"
+#include "draw.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <vector>
@@ -15,40 +17,6 @@ enum Block
     T,
     Z
 };
-
-// Tetris grid dimension
-const int rows = 16;
-const int cols = 10;
-
-// Tile size of each square on the grid
-const int tileSize = 50;
-
-// Window dimensions
-const int width = cols * tileSize;
-const int height = rows * tileSize;
-
-// Colors
-const sf::Color bgColor(40, 40, 43);
-const sf::Color primaryColor(61, 61, 64);
-
-/**
- * @brief Draws the rows by cols Tetris guide grid.
- */
-void drawGrid(sf::RenderWindow &window)
-{
-    // Row and col start at index 1 to prevent drawing an extra border on the left sideo of the window
-    for (int row = 1; row < rows; row++)
-    {
-        sf::RectangleShape tileLine = createRect(0.f, row * tileSize, width, 3.f, primaryColor);
-        window.draw(tileLine);
-    }
-
-    for (int col = 1; col < cols; col++)
-    {
-        sf::RectangleShape tileLine = createRect(col * tileSize, 0.f, 3.f, height, primaryColor);
-        window.draw(tileLine);
-    }
-}
 
 // 2D Vector containing the state of all tiles on the Tetris grid
 // Initially fills it with Empty
@@ -83,6 +51,9 @@ int main()
         window.clear(bgColor);
 
         drawGrid(window);
+
+        sf::RectangleShape rect = makeRectOnGrid(6, 0, sf::Color::Cyan);
+        window.draw(rect);
 
         // End the current frame
         window.display();

@@ -10,7 +10,7 @@ float getFps(sf::Clock& clock)
 sf::RectangleShape createRect(float x, float y, float width, float height, sf::Color color)
 {
     sf::RectangleShape rect(sf::Vector2f(width, height));
-    rect.setFillColor(color);
     rect.setPosition(x, y);
+    rect.setFillColor(color);
     return rect;
 }
