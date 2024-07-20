@@ -1,3 +1,4 @@
+#include "utils.h"
 #include "constants.h"
 #include "SFML/Graphics.hpp"
 
@@ -8,32 +9,32 @@ float getFps(sf::Clock& clock)
     return fps;
 }
 
-sf::RectangleShape createRect(float x, float y, float width, float height, sf::Color color)
+sf::RectangleShape createRect(Point point, float rectWidth, float rectHeight, sf::Color color)
 {
-    sf::RectangleShape rect(sf::Vector2f(width, height));
-    rect.setPosition(x, y);
+    sf::RectangleShape rect(sf::Vector2f(rectWidth, rectHeight));
+    rect.setPosition(point.x, point.y);
     rect.setFillColor(color);
     return rect;
 }
 
-std::pair<float, float> rotatePoint(float cx, float cy, float angleInRads, float x, float y)
+Point rotatePoint(Point point, Point pivot, float angleInRads)
 {
     float s = sin(angleInRads);
     float c = cos(angleInRads);
 
     // Translate the point back to 0, 0 (the origin)
-    x -= cx;
-    y -= cx;
+    point.x -= pivot.x;
+    point.y -= pivot.y;
 
     // Use a rotation matrix to rotate a point around the given angle
-    float xNew = x * c - y * s;
-    float yNew = x * s + y * c;
+    float xNew = point.x * c - point.y * s;
+    float yNew = point.x * s + point.y * c;
 
     // Translate the point back to the pivot
-    x = xNew + cx;
-    y = yNew + cy;
+    point.x = xNew + pivot.x;
+    point.y = yNew + pivot.y;
 
-    return std::make_pair(x, y);
+    return point;
 }
 
 float degToRad(float deg)

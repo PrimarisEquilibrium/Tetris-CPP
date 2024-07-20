@@ -8,31 +8,31 @@ void drawGrid(sf::RenderWindow& window)
     // Horizontal lines
     for (int row = 1; row < rows; row++)
     {
-        sf::RectangleShape tileLine = createRect(
-            0.f, static_cast<float>(row * tileSize), static_cast<float>(width), gridBorder, primaryColor
-        );
+        float yPoint = static_cast<float>(row * tileSize);
+        Point linePosition(0.f, yPoint);
+        sf::RectangleShape tileLine = createRect(linePosition, static_cast<float>(width), gridBorder, primaryColor);
         window.draw(tileLine);
     }
 
     // Vertical lines
     for (int col = 1; col < cols; col++)
     {
-        sf::RectangleShape tileLine = createRect(
-            static_cast<float>(col * tileSize), 0.f, gridBorder, static_cast<float>(height), primaryColor
-        );
+        float xPoint = static_cast<float>(col * tileSize);
+        Point linePosition(xPoint, 0.f);
+        sf::RectangleShape tileLine = createRect(linePosition, gridBorder, static_cast<float>(height), primaryColor);
         window.draw(tileLine);
     }
 }
 
-sf::RectangleShape makeRectOnGrid(float x, float y, sf::Color color)
+sf::RectangleShape makeRectOnGrid(Point point, sf::Color color)
 {
-    return createRect(
-        x * tileSize + gridBorder, // Offset x & y to the right to fit
-        y * tileSize + gridBorder,
-        tileSize - gridBorder,     // Offset dimensions to the left to fit
-        tileSize - gridBorder,
-        color
-    );
+    // operator+ gridBorder: Offset x & y to the right to fit
+    Point gridScaledPoint(point.x * tileSize + gridBorder, point.y * tileSize + gridBorder);
+
+    // operator- gridBorder: Offset dimensions to the left to fit
+    float tileDimension = tileSize - gridBorder;
+
+    return createRect(gridScaledPoint, tileDimension, tileDimension, color);
 }
 
 void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid)
@@ -76,7 +76,8 @@ void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid)
 
             float fcol = static_cast<float>(col);
             float frow = static_cast<float>(row);
-            sf::RectangleShape rect = makeRectOnGrid(fcol, frow, color);
+            Point tilePosition(fcol, frow);
+            sf::RectangleShape rect = makeRectOnGrid(tilePosition, color);
             window.draw(rect);
         }
     }
