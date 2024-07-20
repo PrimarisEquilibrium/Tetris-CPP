@@ -32,4 +32,6 @@ constexpr enum Block
     Z
 };
 
+const float PI = std::atan(1.f) * 4.f;
+
 #endif

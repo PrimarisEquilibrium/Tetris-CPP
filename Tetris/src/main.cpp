@@ -22,6 +22,9 @@ int main()
     
     grid[1][1] = Block::J;
 
+    std::pair<float, float> newPoint = rotatePoint(2.f, 2.f, degToRad(-90), 1.f, 2.f);
+    std::cout << newPoint.first << ", " << newPoint.second << std::endl;
+
     // Run the program as long as the window is open
     while (window.isOpen())
     {
