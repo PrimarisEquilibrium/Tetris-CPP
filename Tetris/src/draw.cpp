@@ -34,3 +34,50 @@ sf::RectangleShape makeRectOnGrid(float x, float y, sf::Color color)
         color
     );
 }
+
+void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid)
+{
+    for (int row = 0; row < rows; row++)
+    {
+        for (int col = 0; col < cols; col++)
+        {
+            Block blockType = grid[row][col];
+
+            // Skip drawing if the tile is empty
+            if (blockType == Empty)
+                continue;
+
+            // Assign a color based on the type of block occupies the grid tile.
+            sf::Color color{};
+            switch (blockType)
+            {
+            case Block::I:
+                color = sf::Color::Cyan;
+                break;
+            case Block::J:
+                color = sf::Color::Blue;
+                break;
+            case Block::L:
+                color = sf::Color(255, 165, 0); // Orange
+                break;
+            case Block::O:
+                color = sf::Color::Yellow;
+                break;
+            case Block::S:
+                color = sf::Color::Green;
+                break;
+            case Block::T:
+                color = sf::Color(153, 50, 204); // Purple
+                break;
+            case Block::Z:
+                color = sf::Color::Red;
+                break;
+            }
+
+            float fcol = static_cast<float>(col);
+            float frow = static_cast<float>(row);
+            sf::RectangleShape rect = makeRectOnGrid(fcol, frow, color);
+            window.draw(rect);
+        }
+    }
+}

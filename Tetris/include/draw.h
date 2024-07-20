@@ -3,6 +3,7 @@
 
 /**
  * @brief Draws the rows by cols Tetris guide grid.
+ * @param window An SFML window.
  */
 void drawGrid(sf::RenderWindow& window);
 
@@ -15,5 +16,12 @@ void drawGrid(sf::RenderWindow& window);
  * @return The RectangleShape object.
  */
 sf::RectangleShape makeRectOnGrid(float x, float y, sf::Color color);
+
+/**
+ * @brief Draws each tile contained within the given grid.
+ * @param window An SMFL window.
+ * @param grid   The grid containing tetromino tiles.
+ */
+void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid);
 
 #endif

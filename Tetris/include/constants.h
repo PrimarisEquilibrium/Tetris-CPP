@@ -19,4 +19,17 @@ inline constexpr int height = rows * tileSize;
 const sf::Color bgColor(40, 40, 43);
 const sf::Color primaryColor(61, 61, 64);
 
+// The different types of tetrominoes
+constexpr enum Block
+{
+    Empty,
+    I,
+    J,
+    L,
+    O,
+    S,
+    T,
+    Z
+};
+
 #endif
