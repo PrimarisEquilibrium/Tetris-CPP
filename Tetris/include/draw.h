@@ -1,6 +1,10 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include "types.h"
+#include "SFML/Graphics.hpp"
+#include <vector>
+
 /**
  * @brief Draws the rows by cols Tetris guide grid.
  * @param window An SFML window.

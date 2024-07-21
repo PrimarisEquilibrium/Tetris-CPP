@@ -1,23 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include "types.h"
 #include "SFML/Graphics.hpp"
-
-/** @brief A coordinate value containing an x and y. */
-struct Point
-{
-    float x;
-    float y;
-
-    Point(float x, float y) : x(x), y(y) {}
-
-public:
-    // Coordinate addition
-    Point operator+(const Point& other)
-    {
-        return Point(x + other.x, y + other.y);
-    }
-};
 
 /**
  * @brief Returns the FPS of the window.

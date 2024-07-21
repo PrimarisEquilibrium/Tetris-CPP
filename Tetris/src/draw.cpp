@@ -1,3 +1,5 @@
+#include "draw.h"
+#include "types.h"
 #include "utils.h"
 #include "constants.h"
 

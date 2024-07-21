@@ -1,8 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "utils.h"
+#include "types.h"
 #include "SFML/Graphics.hpp"
+#include <cmath>
 
 // Tetris grid dimension
 inline constexpr int rows = 16;
@@ -19,19 +20,6 @@ inline constexpr int height = rows * tileSize;
 // Colors
 const sf::Color bgColor(40, 40, 43);
 const sf::Color primaryColor(61, 61, 64);
-
-// The different types of tetrominoes
-constexpr enum Block
-{
-    Empty,
-    I,
-    J,
-    L,
-    O,
-    S,
-    T,
-    Z
-};
 
 const float PI = std::atan(1.f) * 4.f;
 
