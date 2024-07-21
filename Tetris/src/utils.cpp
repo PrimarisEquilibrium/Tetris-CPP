@@ -37,6 +37,17 @@ Point rotatePoint(Point point, Point pivot, float angleInRads)
     return point;
 }
 
+std::vector<Point> rotatePoints(std::vector<Point> tiles, Point pivot, float angleInRads)
+{
+    std::vector<Point> newTiles{};
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        Point tile = tiles[i];
+        newTiles.push_back(rotatePoint(tile, pivot, angleInRads));
+    }
+    return newTiles;
+}
+
 float degToRad(float deg)
 {
     return deg * (PI / 180);

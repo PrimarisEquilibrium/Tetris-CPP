@@ -1,12 +1,13 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include "utils.h"
 #include "SFML/Graphics.hpp"
 
 // Tetris grid dimension
 inline constexpr int rows = 16;
 inline constexpr int cols = 10;
-inline constexpr float gridBorder = 1.f;
+inline constexpr float gridBorder = 2.f;
 
 // Tile size of each square on the grid
 inline constexpr int tileSize = 50;
@@ -33,5 +34,7 @@ constexpr enum Block
 };
 
 const float PI = std::atan(1.f) * 4.f;
+
+inline const Point origin(0, 0);
 
 #endif

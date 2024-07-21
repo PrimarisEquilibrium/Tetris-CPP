@@ -10,6 +10,13 @@ struct Point
     float y;
 
     Point(float x, float y) : x(x), y(y) {}
+
+public:
+    // Coordinate addition
+    Point operator+(const Point& other)
+    {
+        return Point(x + other.x, y + other.y);
+    }
 };
 
 /**
@@ -33,10 +40,19 @@ sf::RectangleShape createRect(Point point, float rectWidth, float rectHeight, sf
  * @brief Rotates a given point around a given pivot point.
  * @param point       The point to rotate.
  * @param pivot       The pivot point.
- * @param angleInRads Angle to rotate by (positive counterclockwise, negative clockwise)
- * @returns A pair containing the x and y coordinates of the new rotated point.
+ * @param angleInRads Angle to rotate by.
+ * @returns The new rotated point.
  */
 Point rotatePoint(Point point, Point pivot, float angleInRads);
+
+/**
+ * @brief Rotates a vector of points around a given pivot point.
+ * @param tiles       The points to rotate.
+ * @param pivot       The pivot point.
+ * @param angleInRads Angle to rotate by.
+ * @returns The new vector of rotated points.
+ */ 
+std::vector<Point> rotatePoints(std::vector<Point> tiles, Point pivot, float angleInRads);
 
 /**
  * @brief Converts from degrees to radians.
