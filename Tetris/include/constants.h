@@ -35,6 +35,11 @@ constexpr enum Block
 
 const float PI = std::atan(1.f) * 4.f;
 
-inline const Point origin(0, 0);
+// The origin of a standard graph
+inline const Point defaultOrigin(0, 0);
+
+// Custom colors
+inline const sf::Color orange(255, 165, 0);
+inline const sf::Color purple(153, 50, 204);
 
 #endif

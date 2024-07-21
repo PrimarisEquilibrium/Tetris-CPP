@@ -58,7 +58,7 @@ void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid)
                 color = sf::Color::Blue;
                 break;
             case Block::L:
-                color = sf::Color(255, 165, 0); // Orange
+                color = orange;
                 break;
             case Block::O:
                 color = sf::Color::Yellow;
@@ -67,7 +67,7 @@ void drawTiles(sf::RenderWindow& window, std::vector<std::vector<Block>>& grid)
                 color = sf::Color::Green;
                 break;
             case Block::T:
-                color = sf::Color(153, 50, 204); // Purple
+                color = purple;
                 break;
             case Block::Z:
                 color = sf::Color::Red;

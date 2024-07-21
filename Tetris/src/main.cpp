@@ -20,23 +20,30 @@ private:
     // The absolute position of a tetromino (from the center)
     Point position;
 
+    // The origin point of the tetromino (required for irregular shapes, i.e. I & O)
+    Point origin;
+
     // The relative position (to the origin) of the tiles that make up the tetromino.
     std::vector<Point> tiles;
 
 public:
     // Constructor
-    Tetromino(Block type, Point position, std::vector<Point> tiles) :
-        type(type), position(position), tiles(tiles) {}
+    Tetromino(Block type, Point position, Point origin, std::vector<Point> tiles) :
+        type(type), position(position), origin(origin), tiles(tiles) {}
 
+    Point getOrigin()
+    {
+        return origin;
+    }
     
     void rotateClockwise()
     {
-        tiles = rotatePoints(tiles, origin, degToRad(-90));
+        tiles = rotatePoints(tiles, origin, degToRad(90));
     }
 
     void rotateCounterClockwise()
     {
-        tiles = rotatePoints(tiles, origin, degToRad(90));
+        tiles = rotatePoints(tiles, origin, degToRad(-90));
     }
 
     void draw(sf::RenderWindow& window)
@@ -45,11 +52,47 @@ public:
         {
             Point tile = tiles[i];
             Point absTilePos = position + tile;
-            sf::RectangleShape tileRect = makeRectOnGrid(absTilePos, sf::Color::Yellow);
+            sf::RectangleShape tileRect = makeRectOnGrid(absTilePos, sf::Color::Cyan);
             window.draw(tileRect);
         }
     }
 };
+
+Tetromino makeTetromino(Point initialPos, Block type)
+{
+    Point origin = defaultOrigin;
+    std::vector<Point> tiles{};
+
+    switch (type) {
+    case Block::I:
+        origin = Point(-0.5, -0.5);
+        tiles = { {-2, -1}, {-1, -1}, {0, -1}, {1, -1} };
+        break;
+    case Block::J:
+        tiles = { {-1, -1}, {-1, 0}, {0, 0}, {1, 0} };
+        break;
+    case Block::L:
+        tiles = { {1, -1}, {-1, 0}, {0, 0}, {1, 0} };
+        break;
+    case Block::O:
+        origin = Point(0.5, 0.5);
+        tiles = { {0, 0}, {1, 0}, {0, 1}, {1, 1} };
+        break;
+    case Block::S:
+        tiles = { {-1, 0}, {0, 0}, {0, -1}, {1, -1} };
+        break;
+    case Block::T:
+        tiles = { {0, -1}, {-1, 0}, {0, 0}, {1, 0} };
+        break;
+    case Block::Z:
+        tiles = { {-1, -1}, {0, -1}, {0, 0}, {1, 0} };
+        break;
+    default:
+        throw std::runtime_error("makeTetromino() received an incorrect Block type");
+    }
+
+    return Tetromino(type, initialPos, origin, tiles);
+}
 
 int main()
 {   
@@ -63,8 +106,8 @@ int main()
     std::map<Block, std::vector<Point>> blockShapes;
 
     Point position(2, 2);
-    std::vector<Point> tiles = { {-1, 0}, {0, 0}, {1, 0}, {-1, 1} };
-    Tetromino sampleTetromino(Block::L, position, tiles);
+    Tetromino sampleTetromino = makeTetromino(position, Block::I);
+    sampleTetromino.rotateClockwise();
 
     // Run the program as long as the window is open
     while (window.isOpen())
@@ -89,6 +132,7 @@ int main()
         drawTiles(window, grid);
 
         sampleTetromino.draw(window);
+        window.draw(makeRectOnGrid(sampleTetromino.getOrigin() + position, sf::Color::Red));
 
         // End the current frame
         window.display();
