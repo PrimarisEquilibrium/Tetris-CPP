@@ -47,9 +47,6 @@ public:
     // Places the corresponding tiles onto the Tetris grid 2D Vector
     void updateToGrid(std::vector<std::vector<Block>>& grid);
 
-    // Draws the tetromino onto the Tetris grid
-    void draw(sf::RenderWindow& window);
-
     // Draws the origin point onto the Tetris grid
     void drawOrigin(sf::RenderWindow& window);
 };
