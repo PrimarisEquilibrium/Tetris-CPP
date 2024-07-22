@@ -26,8 +26,6 @@ int main()
     // Forces the window to run at 60fps max
     window.setFramerateLimit(60);
 
-    std::map<Block, std::vector<Point>> blockShapes;
-
     Point position(2, 2);
     Tetromino sampleTetromino = makeTetromino(position, Block::I);
     sampleTetromino.rotateClockwise();
