@@ -32,9 +32,15 @@ public:
 
     Point getOrigin();
 
+    Point getPosition();
+
     void rotateClockwise();
 
     void rotateCounterClockwise();
+
+    void shiftLeft();
+
+    void shiftRight();
 
     // Draws the tetromino onto the Tetris grid
     void draw(sf::RenderWindow& window);

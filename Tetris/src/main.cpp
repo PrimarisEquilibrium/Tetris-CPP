@@ -29,6 +29,7 @@ int main()
     Point position(2, 2);
     Tetromino sampleTetromino = makeTetromino(position, Block::I);
     sampleTetromino.rotateClockwise();
+    sampleTetromino.shiftLeft();
 
     // Run the program as long as the window is open
     while (window.isOpen())
@@ -53,7 +54,7 @@ int main()
         drawTiles(window, grid);
 
         sampleTetromino.draw(window);
-        window.draw(makeRectOnGrid(sampleTetromino.getOrigin() + position, sf::Color::Red));
+        window.draw(makeRectOnGrid(sampleTetromino.getOrigin() + sampleTetromino.getPosition(), sf::Color::Red));
 
         // End the current frame
         window.display();

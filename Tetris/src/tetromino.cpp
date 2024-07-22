@@ -13,6 +13,11 @@ Point Tetromino::getOrigin()
     return origin;
 }
 
+Point Tetromino::getPosition()
+{
+    return position;
+}
+
 void Tetromino::rotateClockwise()
 {
     tiles = rotatePoints(tiles, origin, degToRad(90));
@@ -21,6 +26,16 @@ void Tetromino::rotateClockwise()
 void Tetromino::rotateCounterClockwise()
 {
     tiles = rotatePoints(tiles, origin, degToRad(-90));
+}
+
+void Tetromino::shiftRight()
+{
+    position = position + Point(1, 0);
+}
+
+void Tetromino::shiftLeft()
+{
+    position = position + Point(-1, 0);
 }
 
 void Tetromino::draw(sf::RenderWindow& window)
