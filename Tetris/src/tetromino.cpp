@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "draw.h"
 #include "constants.h"
+#include <iostream>
 #include <vector>
 
 Tetromino::Tetromino(Block type, Point position, Point origin, std::vector<Point> tiles) :
@@ -38,14 +39,26 @@ void Tetromino::shiftLeft()
     position = position + Point(-1, 0);
 }
 
-void Tetromino::draw(sf::RenderWindow& window)
+void Tetromino::shiftDown()
 {
-    for (const auto& tile : tiles)
+    position = position + Point(0, 1);
+}
+
+void Tetromino::updateToGrid(std::vector<std::vector<Block>>& grid)
+{
+    for (const Point& tile : tiles)
     {
         Point absTilePos = position + tile;
-        sf::RectangleShape tileRect = makeRectOnGrid(absTilePos, sf::Color::Cyan);
-        window.draw(tileRect);
+        if (absTilePos.y >= 0 && absTilePos.y < grid.size()
+            && absTilePos.x >= 0 && absTilePos.x < grid.size()) {
+            grid[static_cast<int>(absTilePos.y)][static_cast<int>(absTilePos.x)] = type;
+        }
     }
+}
+
+void Tetromino::drawOrigin(sf::RenderWindow& window)
+{
+    window.draw(makeRectOnGrid(origin + position, sf::Color::Red));
 }
 
 Tetromino makeTetromino(Point initialPos, Block type)

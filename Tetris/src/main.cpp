@@ -26,10 +26,8 @@ int main()
     // Forces the window to run at 60fps max
     window.setFramerateLimit(60);
 
-    Point position(2, 2);
-    Tetromino sampleTetromino = makeTetromino(position, Block::I);
-    sampleTetromino.rotateClockwise();
-    sampleTetromino.shiftLeft();
+    Tetromino sampleTetromino = makeTetromino(Point(2, 2), Block::I);
+    sampleTetromino.updateToGrid(grid);
 
     // Run the program as long as the window is open
     while (window.isOpen())
@@ -53,8 +51,8 @@ int main()
         drawGrid(window);
         drawTiles(window, grid);
 
-        sampleTetromino.draw(window);
-        window.draw(makeRectOnGrid(sampleTetromino.getOrigin() + sampleTetromino.getPosition(), sf::Color::Red));
+        // sampleTetromino.draw(window);
+        // sampleTetromino.drawOrigin(window);
 
         // End the current frame
         window.display();
