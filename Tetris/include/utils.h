@@ -46,4 +46,17 @@ std::vector<Point> rotatePoints(std::vector<Point> tiles, Point pivot, float ang
  */
 float degToRad(float deg);
 
+/**
+ * @brief Randomly selects a value from the vector.
+ * @param vector The vector to randomly select a value from.
+ * @return The randomly selected value.
+ */
+template <typename T>
+T randomVectorChoice(const std::vector<T>& vector)
+{
+    size_t N = vector.size();
+    int randomVectorIndex = rand() % N;
+    return vector[randomVectorIndex];
+}
+
 #endif

@@ -4,6 +4,7 @@
 #include "types.h"
 #include "SFML/Graphics.hpp"
 #include <cmath>
+#include <vector>
 
 // Tetris grid dimension
 inline constexpr int rows = 16;
@@ -29,5 +30,9 @@ inline const Point defaultOrigin(0, 0);
 // Custom colors
 inline const sf::Color orange(255, 165, 0);
 inline const sf::Color purple(153, 50, 204);
+
+inline const std::vector<Block> allBlocks = {
+    Block::I, Block::J, Block::L, Block::O, Block::S, Block::T, Block::Z
+};
 
 #endif
