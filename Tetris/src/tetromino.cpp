@@ -61,7 +61,7 @@ void Tetromino::drawOrigin(sf::RenderWindow& window)
     window.draw(makeRectOnGrid(origin + position, sf::Color::Red));
 }
 
-Tetromino makeTetromino(Point initialPos, Block type)
+Tetromino* makeTetromino(Point initialPos, Block type)
 {
     Point origin = defaultOrigin;
     std::vector<Point> tiles{};
@@ -95,5 +95,6 @@ Tetromino makeTetromino(Point initialPos, Block type)
         throw std::runtime_error("makeTetromino() received an incorrect Block type");
     }
 
-    return Tetromino(type, initialPos, origin, tiles);
+    Tetromino* tetrominoObj = new Tetromino(type, initialPos, origin, tiles);
+    return tetrominoObj;
 }

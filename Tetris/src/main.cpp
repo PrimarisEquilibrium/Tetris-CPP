@@ -26,7 +26,8 @@ int main()
     // Forces the window to run at 60fps max
     window.setFramerateLimit(60);
 
-    Tetromino sampleTetromino = makeTetromino(Point(2, 2), Block::I);
+    Tetromino* tetrominoObj = makeTetromino(Point(2, 2), Block::I);
+    Tetromino sampleTetromino = *tetrominoObj;
     sampleTetromino.updateToGrid(grid);
 
     // Run the program as long as the window is open
@@ -57,6 +58,8 @@ int main()
         // End the current frame
         window.display();
     }
+
+    delete tetrominoObj;
 
     return 0;
 }

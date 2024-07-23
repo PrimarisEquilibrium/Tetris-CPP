@@ -52,10 +52,11 @@ public:
 };
 
 /**
- * @brief Creates a Tetromino class instance.
+ * @brief Creates a dynamic Tetromino class instance and returns its pointer.
+ * @note Use `delete tetrominoObj` to free memory after using it.
  * @param initialPos The position to create it at.
  * @param type       The type of block the tetromino will be.
  */
-Tetromino makeTetromino(Point initialPos, Block type);
+Tetromino* makeTetromino(Point initialPos, Block type);
 
 #endif
